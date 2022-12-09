@@ -49,7 +49,7 @@ client.on('messageCreate', async message => {
   const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command))
   if (!cmd) return
   if (cmd.inVoiceChannel && !message.member.voice.channel) {
-    return message.channel.send(`${client.emotes.error} | You must be in a voice channel!`)
+    return message.channel.send(`${client.emotes.error} | Heretic! You must be in a voice channel!`)
   }
   try {
     cmd.run(client, message, args)
@@ -66,30 +66,30 @@ const status = queue =>
 client.distube
   .on('playSong', (queue, song) =>
     queue.textChannel.send(
-      `${client.emotes.play} | Me play \`${song.name}\` - \`${song.formattedDuration}\`\n${status(queue)}`
+      `${client.emotes.play} | By the Emperor's grace, playing \`${song.name}\` - \`${song.formattedDuration}\`\n${status(queue)}`
     )
   )
   .on('addSong', (queue, song) =>
     queue.textChannel.send(
-      `${client.emotes.success} | Me add ${song.name} - \`${song.formattedDuration}\` to queue`
+      `${client.emotes.success} | I was not made for rest. Adding ${song.name} - \`${song.formattedDuration}\` to queue`
     )
   )
   .on('addList', (queue, playlist) =>
     queue.textChannel.send(
-      `${client.emotes.success} | Me add \`${playlist.name}\` playlist (${
+      `${client.emotes.success} | Forging a new \`${playlist.name}\` playlist (${
         playlist.songs.length
       } songs) to queue\n${status(queue)}`
     )
   )
   .on('error', (channel, e) => {
-    if (channel) channel.send(`${client.emotes.error} | An error encountered: ${e.toString().slice(0, 1974)}`)
+    if (channel) channel.send(`${client.emotes.error} | Heretic! An error encountered: ${e.toString().slice(0, 1974)}`)
     else console.error(e)
   })
-  .on('empty', channel => channel.send('Voice channel is empty! Me leave...'))
+  .on('empty', channel => channel.send('The Iron Hands are stronger together. I will return, upon request.'))
   .on('searchNoResult', (message, query) =>
-    message.channel.send(`${client.emotes.error} | Me no find \`${query}\`!`)
+    message.channel.send(`${client.emotes.error} | This song, \`${query}\`, it appears to be lost`)
   )
-  .on('finish', queue => queue.textChannel.send('Me Finished!'))
+  .on('finish', queue => queue.textChannel.send('Your songs are through... bitch.'))
 // // DisTubeOptions.searchSongs = true
 // .on("searchResult", (message, result) => {
 //     let i = 0

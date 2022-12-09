@@ -4,8 +4,8 @@ module.exports = {
   inVoiceChannel: true,
   run: async (client, message) => {
     const queue = client.distube.getQueue(message)
-    if (!queue) return message.channel.send(`${client.emotes.error} | There is nothing in the queue right now!`)
+    if (!queue) return message.channel.send(`${client.emotes.error} | Heretic! The queue is empty!`)
     queue.stop()
-    message.channel.send(`${client.emotes.success} | Stopped!`)
+    message.channel.send(`${client.emotes.success} | Don't keep the Emperor waiting!`)
   }
 }
