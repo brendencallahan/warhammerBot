@@ -14,14 +14,11 @@ module.exports = {
                 factions.push(i)
             }
 
-            let random_faction = factions[Math.floor(Math.random()*factions.length)]
+            let random_facts_list = facts[factions[Math.floor(Math.random()*factions.length)]]
+            let random_fact = random_facts_list[Math.floor(Math.random()*random_facts_list.length)]
 
-            console.log(random_faction)
+            return message.channel.send(random_fact)
 
-            let random_fact = facts[random_faction]
-            console.log(random_fact[0])
-
-            return message.channel.send("hmm")
         }
 
 
