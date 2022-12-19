@@ -6,6 +6,7 @@ module.exports = {
     const queue = client.distube.getQueue(message)
     if (!queue) return message.channel.send(`${client.emotes.error} | Heretic! There is nothing playing!`)
     let mode = null
+    // Fix this
     switch (args[0]) {
       case 'off':
         mode = 0

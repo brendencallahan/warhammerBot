@@ -1,8 +1,12 @@
 module.exports = {
   name: 'resume',
-  aliases: ['resume', 'unpause'],
+  aliases: ['unpause'],
   inVoiceChannel: true,
-  run: async (client, message) => {
+  run: async (client, message, args) => {
+    const string = args.join(' ')
+    if (string) {
+      return message.channel.send(`${client.emotes.error} | Heretic! You speak too much. Just say !resume, or !unpause`)
+    }
     const queue = client.distube.getQueue(message)
     if (!queue) return message.channel.send(`${client.emotes.error} | Heretic! The queue is empty!`)
     if (queue.paused) {
