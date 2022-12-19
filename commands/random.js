@@ -18,6 +18,6 @@ module.exports = {
             return message.channel.send(`${client.emotes.error} | Heretic! I know nothing of this ${string}.`)
         }
         let random_fact = facts_list[Math.floor(Math.random()*facts_list.length)]
-        return message.channel.send(random_fact)
+        return message.channel.send(`${client.emotes.success} | ${random_fact}`)
     }
 }
