@@ -6,9 +6,13 @@ module.exports = {
   run: async (client, message, args) => {
     let voiceChannel = message.member.voice.channel
     if (args[0]) {
-      voiceChannel = await client.channels.fetch(args[0])
+      try {
+        voiceChannel = await client.channels.fetch(args[0])
+      } catch (error) {
+        return message.channel.send(`${client.emotes.error} | Heretic! ${args[0]} is not valid. Your heresy will be remembered!`)
+      }
       if (!Constants.VoiceBasedChannelTypes.includes(voiceChannel?.type)) {
-        return message.channel.send(`${client.emotes.error} | ${args[0]} is not valid. Your heresy will be remembered!`)
+        return message.channel.send(`${client.emotes.error} | Heretic! ${args[0]} is not valid. Your heresy will be remembered!`)
       }
     }
     if (!voiceChannel) {

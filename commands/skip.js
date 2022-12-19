@@ -10,9 +10,9 @@ module.exports = {
     if (!queue) return message.channel.send(`${client.emotes.error} | Heretic! The queue is empty!`)
     try {
       const song = await queue.skip()
-      message.channel.send(`${client.emotes.success} | Skipped! Now playing:\n${song.name}`)
+      message.channel.send(`${client.emotes.success} | Skipped! I will now play:\n${song.name}`)
     } catch (e) {
-      message.channel.send(`${client.emotes.error} | ${e}`)
+      message.channel.send(`${client.emotes.error} | Heretic! It appears there was an error. Try again, and ensure you have songs queued.`)
     }
   }
 }

@@ -1,13 +1,19 @@
+const { ModalAssertions } = require("discord.js")
+
 module.exports = {
   name: 'repeat',
   aliases: ['loop', 'rp'],
   inVoiceChannel: true,
   run: async (client, message, args) => {
     const queue = client.distube.getQueue(message)
+    const string = args.join(' ').toLowerCase()
     if (!queue) return message.channel.send(`${client.emotes.error} | Heretic! There is nothing playing!`)
     let mode = null
-    // Fix this
-    switch (args[0]) {
+    let modes = ['off', 'song', 'queue']
+    if (!modes.includes(string)) {
+      return message.channel.send(`${client.emotes.error} | Heretic! You must specify what to repeat. Try !repeat off, !repeat song, or !repeat queue.`)
+    }
+    switch (string) {
       case 'off':
         mode = 0
         break

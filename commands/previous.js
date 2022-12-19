@@ -10,7 +10,11 @@ module.exports = {
     }
     const queue = client.distube.getQueue(message)
     if (!queue) return message.channel.send(`${client.emotes.error} | Heretic! The queue is empty!`)
-    const song = queue.previous()
-    message.channel.send(`${client.emotes.success} | I will now play:\n${song.name}`)
+    try {
+      const song = await queue.previous()
+      return message.channel.send(`${client.emotes.success} | I will now play:\n${song.name}`)
+    } catch (error) {
+      return message.channel.send(`${client.emotes.error} Heretic! There are no previous songs!`)
+    }
   }
 }
