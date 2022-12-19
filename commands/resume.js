@@ -11,10 +11,10 @@ module.exports = {
     if (!queue) return message.channel.send(`${client.emotes.error} | Heretic! The queue is empty!`)
     if (queue.paused) {
       queue.resume()
-      message.channel.send('Finally, you have returned')
+      message.channel.send(`${client.emotes.success} | Finally, you have returned`)
     } else {
       queue.pause()
-      message.channel.send('The Emperor will not wait long!')
+      message.channel.send(`${client.emotes.success} | The Emperor will not wait long!`)
     }
   }
 }
