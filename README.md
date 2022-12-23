@@ -2,11 +2,11 @@
 Discord music bot with a Warhammer 40k flare.
 Uses discordjs and distube for playback.
 
-`$ git clone <repo>`  
+`$ git clone https://github.com/brendencallahan/warhammerBot`  
 
-`$ cd <repo>`  
+`$ cd warhammerBot`  
 
-`$ (provide private key)`  
+`Provide key in config.json`  
 
 `$ npm i`  
 
