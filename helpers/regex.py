@@ -42,8 +42,10 @@ def main():
         # } and remove trailing comma from last entry
         facts[-1] = facts[-1][:-3] + "\n]}"
 
-        # Write to JSON file for Ferrus to read
+        # Check for existing facts.json file
         if os.path.isfile('../static/facts.json'):
+
+            # Replace facts.json, if user confirms, otherwise exit
             if cli.confirm('facts.JSON exists. Replace?', default=True):
                 print('Replacing facts.json...')
                 with open('../static/facts.json', 'w') as f:
@@ -51,13 +53,14 @@ def main():
                 print('Success')
                 return
             else:
-                print('Exiting job...')
-                print('Exited: "facts.JSON already exists"')
+                print(f'Exiting job...\n Exited: "facts.JSON already exists"')
                 return
+
+        # If facts.json doesn't exist create it and write facts to it
         else:
             with open('../static/facts.json', 'w') as f:
                 f.writelines(facts)
-                print('Success')
+                print(f'Creating facts.json...\n Success')
                 return
 
 
