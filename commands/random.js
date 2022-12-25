@@ -7,7 +7,7 @@ module.exports = {
         // Print random fact if no faction name is provided
         const string = args.join(' ').toLowerCase()
         let factions = []
-        for (i in facts) {
+        for (let i in facts) {
             factions.push(i)
         }
         if (!string) {
