@@ -12,7 +12,7 @@ module.exports = {
       const song = await queue.skip()
       message.channel.send(`${client.emotes.success} | Skipped! I will now play:\n${song.name}`)
     } catch (e) {
-      message.channel.send(`${client.emotes.error} | Heretic! It appears there was an error. Try again, and ensure you have songs queued.`)
+      message.channel.send(`${client.emotes.error} | Heretic! Try again, and ensure you have songs queued.`)
     }
   }
 }

@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { DisTube } = require("distube");
-const Discord = require("discord.js")
+const Discord = require("discord.js");
+
 const client = new Discord.Client({
     intents: [
       Discord.GatewayIntentBits.Guilds,
@@ -17,7 +18,8 @@ client.distube = new DisTube(client, {
     leaveOnStop: false,
     emitNewSongOnly: true,
     emitAddSongWhenCreatingQueue: false,
-    emitAddListWhenCreatingQueue: false
+    emitAddListWhenCreatingQueue: false,
+    nsfw: true
 })
 
 client.commands = new Discord.Collection()
@@ -89,22 +91,6 @@ client.distube
   .on('searchNoResult', (message, query) =>
     message.channel.send(`${client.emotes.error} | This song, \`${query}\`, it appears to be lost`)
   )
-  .on('finish', queue => queue.textChannel.send('Your songs are through... bitch.'))
-// // DisTubeOptions.searchSongs = true
-// .on("searchResult", (message, result) => {
-//     let i = 0
-//     message.channel.send(
-//         `**Choose an option from below**\n${result
-//             .map(song => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``)
-//             .join("\n")}\n*Enter anything else or wait 60 seconds to cancel*`
-//     )
-// })
-// .on("searchCancel", message => message.channel.send(`${client.emotes.error} | Searching canceled`))
-// .on("searchInvalidAnswer", message =>
-//     message.channel.send(
-//         `${client.emotes.error} | Invalid answer! You have to enter the number in the range of the results`
-//     )
-// )
-// .on("searchDone", () => {})
+  .on('finish', queue => queue.textChannel.send(`${client.emotes.stop} | Your songs are through... but I hear the Sapphire calling...`))
 
 client.login(config.token);
