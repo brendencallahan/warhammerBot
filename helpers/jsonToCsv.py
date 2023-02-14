@@ -13,6 +13,7 @@ with open("../static/facts.json", "r") as jsonfile:
             for fact in data[faction]:
                 fact = fact.replace('“', '"')
                 fact = fact.replace('”', '"')
+                fact = fact.replace("’", "'")
                 row = writer.writerow(
                     {
                         "alliance": faction,
