@@ -1,12 +1,16 @@
+from operator import itemgetter
 import json
 import csv
 
 
-with open('../static/facts.csv', 'r') as csvFile:
+with open("../static/facts.csv", "r") as csvFile:
     csvData = csv.DictReader(csvFile)
-    facts = []
+    unsortedFacts = []
     for csvRow in csvData:
-        facts.append(csvRow)
+        unsortedFacts.append(csvRow)
 
-with open('../static/facts.json', 'w') as jsonFile:
+    facts = sorted(unsortedFacts, key=itemgetter(
+        "alliance", "faction", "subfaction"))
+
+with open("../static/facts.json", "w") as jsonFile:
     json.dump(facts, jsonFile)

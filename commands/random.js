@@ -1,30 +1,81 @@
-const facts = require('../static/facts.json')
+const facts = require("../static/facts.json");
+let keywords = {};
+
+// Make map from keywords to index numbers
+// {"chaos":[0,5],"imperium":[6,30],"xenos":[31,38]}
+// will allow for calling !random "word" and getting only "word" facts
+// where "word" is any column defined below
+keywords[facts[0].alliance] = [0, 0];
+keywords[facts[0].faction] = [0, 0];
+keywords[facts[0].subfaction] = [0, 0];
+for (let i = 1; i < facts.length; i++) {
+  if (facts[i].alliance != facts[i - 1].alliance) {
+    keywords[facts[i].alliance] = [i, i];
+  } else {
+    keywords[facts[i].alliance][1]++;
+  }
+  if (facts[i].faction != facts[i - 1].faction) {
+    keywords[facts[i].faction] = [i, i];
+  } else {
+    keywords[facts[i].faction][1]++;
+  }
+  if (facts[i].subfaction != facts[i - 1].subfaction) {
+    keywords[facts[i].subfaction] = [i, i];
+  } else {
+    keywords[facts[i].subfaction][1]++;
+  }
+}
+
+delete keywords[""];
 
 module.exports = {
-    name: 'random',
-    aliases: ['fact', 'funfact'],
-    run: async (client, message, args) => {
-        // Print random fact if no faction name is provided
-        const string = args.join(' ').toLowerCase()
-        let factions = []
-        for (let i in facts) {
-            factions.push(i)
-        }
-        if (!string) {
-            var faction = factions[Math.floor(Math.random()*factions.length)]
-            var facts_list = facts[faction]
-        } else if (factions.includes(string)){
-            var faction = string
-            var facts_list = facts[faction]
-        } else if (string === 'list' || string === 'factions'){
-            return message.channel.send(`${client.emotes.success} | Ask me anything about ${factions}`)
-        } else {
-            return message.channel.send(`${client.emotes.error} | Heretic! I know nothing of this ${string}. To see what I know of, use !random list or !random factions`)
-        }
-        let random_fact = facts_list[Math.floor(Math.random()*facts_list.length)]
-        if (random_fact.includes('Ferrus')) {
-            await message.channel.send({files: [{ attachment: "https://static.wikia.nocookie.net/warhammer40k/images/8/81/Ferrus_Manus_sketch.jpg" }] })
-        }
-        return message.channel.send(`${client.emotes.success} | ${faction.charAt(0).toUpperCase() + faction.slice(1)} fact: ${random_fact}`)
+  name: "random",
+  aliases: ["fact", "funfact"],
+  run: async (client, message, args) => {
+    // Print random fact if no faction name is provided
+    const string = args.join(" ").toLowerCase();
+    const randomFactIndex = (min, max) =>
+      Math.floor(Math.random() * (max - min)) + min;
+    let factIndex = randomFactIndex(0, facts.length);
+    let fact = facts[factIndex];
+
+    if (string) {
+      if (string in keywords) {
+        factIndex = randomFactIndex(keywords[string][0], keywords[string][1]);
+        fact = facts[factIndex];
+      } else if (string === "keywords") {
+        return message.channel.send(
+          `${client.emotes.success} | Ask me about ${JSON.stringify(
+            Object.keys(keywords)
+          )}`
+        );
+      } else {
+        return message.channel.send(
+          `${client.emotes.error} | Heretic! I know nothing of this "${string}"... To see what I know type !random keywords`
+        );
+      }
     }
-}
+
+    fact.alliance =
+      fact.alliance.charAt(0).toUpperCase() + fact.alliance.slice(1);
+    fact.faction = fact.faction.charAt(0).toUpperCase() + fact.faction.slice(1);
+    fact.subfaction =
+      fact.subfaction.charAt(0).toUpperCase() + fact.subfaction.slice(1);
+
+    if (fact.fact.includes("Ferrus")) {
+      await message.channel.send({
+        files: [
+          {
+            attachment:
+              "https://static.wikia.nocookie.net/warhammer40k/images/8/81/Ferrus_Manus_sketch.jpg",
+          },
+        ],
+      });
+    }
+
+    return message.channel.send(
+      `${client.emotes.success} | ${fact.alliance} - ${fact.faction} - ${fact.subfaction}:
+${fact.fact}`
+    );
+  },
+};
