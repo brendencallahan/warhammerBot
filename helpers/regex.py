@@ -34,7 +34,7 @@ def main():
 
             # Format all entries that aren't faction names.
             else:
-                facts[i] = f'\t"{facts[i].strip()}",\n'
+                facts[i] = f'\t"{facts[i].strip()}",\n\n'
 
         # Wrap the entire thing in curly braces {
         facts[0] = "{" + facts[0]
