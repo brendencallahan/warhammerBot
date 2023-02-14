@@ -11,11 +11,13 @@ with open("../static/facts.json", "r") as jsonfile:
         writer.writeheader()
         for faction in data:
             for fact in data[faction]:
+                fact = fact.replace('“', '"')
+                fact = fact.replace('”', '"')
                 row = writer.writerow(
                     {
                         "alliance": faction,
-                        "faction": "faction",
-                        "subfaction": "subfaction",
+                        "faction": "",
+                        "subfaction": "",
                         "fact": fact,
                     }
                 )
