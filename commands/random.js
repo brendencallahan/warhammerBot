@@ -1,5 +1,14 @@
 const facts = require("../static/facts.json");
 let keywords = {};
+let settings = {
+  warhammer40k: ["imperium", "chaos", "xenos"],
+  fantasy: [
+    "Grand Alliance: Order",
+    "Grand Alliance: Chaos",
+    "Grand Alliance: Death",
+    "Grand Alliance: Destruction",
+  ],
+};
 
 // Make map from keywords to index numbers
 // {"chaos":[0,5],"imperium":[6,30],"xenos":[31,38]}
@@ -26,6 +35,15 @@ for (let i = 1; i < facts.length; i++) {
   }
 }
 
+keywords["40k"] = [keywords["chaos"][0], keywords["xenos"][1]];
+try {
+  keywords["fantasy"] = [
+    keywords["grand alliance: chaos"][0],
+    keywords["grand alliance: order"][1],
+  ];
+} catch (e) {
+  console.log(e);
+}
 delete keywords[""];
 
 module.exports = {
@@ -56,11 +74,9 @@ module.exports = {
       }
     }
 
-    fact.alliance =
-      fact.alliance.charAt(0).toUpperCase() + fact.alliance.slice(1);
+    fact.alliance = fact.alliance.charAt(0).toUpperCase() + fact.alliance.slice(1);
     fact.faction = fact.faction.charAt(0).toUpperCase() + fact.faction.slice(1);
-    fact.subfaction =
-      fact.subfaction.charAt(0).toUpperCase() + fact.subfaction.slice(1);
+    fact.subfaction = fact.subfaction.charAt(0).toUpperCase() + fact.subfaction.slice(1);
 
     if (fact.fact.includes("Ferrus")) {
       await message.channel.send({
@@ -74,7 +90,7 @@ module.exports = {
     }
 
     return message.channel.send(
-      `${client.emotes.success} | ${fact.alliance} - ${fact.faction} - ${fact.subfaction}:
+      `${client.emotes.success} | Alliance:${fact.alliance} - Faction:${fact.faction} - Subfaction:${fact.subfaction} - Fact:
 ${fact.fact}`
     );
   },
