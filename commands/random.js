@@ -45,6 +45,14 @@ try {
   console.log(e);
 }
 delete keywords[""];
+let keys = Object.keys(keywords)
+let keywordString = keys.shift()
+
+for (let i = 0; i < (keys.length - 1); i++) {
+    keywordString += `, ${keys[i]}`
+}
+
+keywordString += `, or ${keys.pop()}`
 
 module.exports = {
   name: "random",
@@ -63,9 +71,7 @@ module.exports = {
         fact = facts[factIndex];
       } else if (string === "keywords") {
         return message.channel.send(
-          `${client.emotes.success} | Ask me about ${JSON.stringify(
-            Object.keys(keywords)
-          )}`
+          `${client.emotes.success} | You may ask me anything about: ${keywordString}`
         );
       } else {
         return message.channel.send(
@@ -90,8 +96,8 @@ module.exports = {
     }
 
     return message.channel.send(
-      `${client.emotes.success} | Alliance:${fact.alliance} - Faction:${fact.faction} - Subfaction:${fact.subfaction} - Fact:
-${fact.fact}`
+      `${client.emotes.success} | Alliance: ${fact.alliance} - Faction: ${fact.faction} - Subfaction: ${fact.subfaction}
+Random Fact: ${fact.fact}`
     );
   },
 };
