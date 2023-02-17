@@ -57,6 +57,10 @@ keywordString += `, or ${keys.pop()}`
 module.exports = {
   name: "random",
   aliases: ["fact", "funfact"],
+  description: "Returns a random fact.",
+  verbose: "Typing \`!random\`, \`!fact\`, or \`!funfact\` will return any random fact from the list." +
+    "If you wish to specify an alliance, faction, or subfaction, you can provide it immediately after." + 
+    "To get a list of alliances, etc. type \`!random keywords\`.",
   run: async (client, message, args) => {
     // Print random fact if no faction name is provided
     const string = args.join(" ").toLowerCase();
