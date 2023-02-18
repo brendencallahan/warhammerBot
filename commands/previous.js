@@ -2,6 +2,9 @@ const { stringEmail } = require("@sapphire/shapeshift")
 
 module.exports = {
   name: 'previous',
+  description: "Plays the previous song in the queue ",
+  verbose: "Typing \`!previous\` will play the previous song in the queue. " +
+    "You may also be looking for \`!skip\`.",
   inVoiceChannel: true,
   run: async (client, message, args) => {
     const string = args.join(' ')

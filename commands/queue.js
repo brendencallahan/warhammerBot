@@ -1,6 +1,10 @@
 module.exports = {
   name: 'queue',
   aliases: ['q'],
+  description: "Lists the queue",
+  verbose: "Typing \`!queue\` or \`!q\` will return a list of the current songs in the queue. " +
+  "If there are too many songs to fit in a Discord message, the middle portion will be cut off. " +
+  "(Note: \`!stop\` will delete the current queue.)",
   run: async (client, message, args) => {
     const string = args.join(' ')
     if (string) {

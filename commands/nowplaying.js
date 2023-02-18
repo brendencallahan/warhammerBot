@@ -1,6 +1,10 @@
 module.exports = {
   name: 'nowplaying',
   aliases: ['np'],
+  description: "Returns the name of current song",
+  verbose: "Typing \`!nowplaying\` or \`!np\` will return the currently playing song. " +
+    "It will also return the name of the person that requested the song " + 
+    "To get a list of the current queue, you can use \`!queue\`.",
   inVoiceChannel: true,
   run: async (client, message, args) => {
 

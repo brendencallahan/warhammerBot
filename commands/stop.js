@@ -2,6 +2,9 @@ module.exports = {
   name: 'stop',
   aliases: ['fullstop'],
   inVoiceChannel: true,
+  description: "Stops the current song/delete queue",
+  verbose: "Typing \`!stop\` or \`!fullstop\` will stop playing the current song and DELETE the queue. " +
+    "(Note: This will completely delete the queue.)",
   run: async (client, message, args) => {
     const string = args.join(' ')
     if (string) {

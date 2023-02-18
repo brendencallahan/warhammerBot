@@ -1,6 +1,11 @@
 module.exports = {
   name: 'play',
   aliases: ['p'],
+  description: "Searches YouTube and plays request",
+  verbose: "Typing \`!play\` or \`!p\`, followed by a \`query\`, will play the first result from YouTube. " +
+    "If you wish to play a playlist you may either copy+paste from a browser, or more conveniently, " + 
+    "you can you the \`!search\` command which will return only playlists. " + 
+    "You may also be looking for \`!stop\`. (Note: \`!stop\` will delete the queue)",
   inVoiceChannel: true,
   run: async (client, message, args) => {
     const string = args.join(' ')

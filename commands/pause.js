@@ -1,6 +1,10 @@
 module.exports = {
   name: 'pause',
   aliases: ['hold'],
+  description: "Pauses the current song",
+  verbose: "Typing \`!pause\` or \`!hold\` will pause the currently playing song. " +
+    "It will also start playing, if the song is already paused. " + 
+    "You may also be looking for \`!resume\`.",
   inVoiceChannel: true,
   run: async (client, message, args) => {
     const string = args.join(' ')

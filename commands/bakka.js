@@ -1,5 +1,7 @@
 module.exports = {
   name: 'bakka',
+  description: 'bakka',
+  verbose: 'bakka',
   run: async (client, message, args) => {
     const string = args.join(' ')
     if (string) {

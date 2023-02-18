@@ -3,6 +3,9 @@ const { Constants } = require('discord.js')
 module.exports = {
   name: 'join',
   aliases: ['move'],
+  description: "Joins the voice channel",
+  verbose: "Typing \`!join\` will have me join whatever voice channel you're currently in. " + 
+    "If you are wanting me to leave, try the \`!leave\` command.",
   run: async (client, message, args) => {
     let voiceChannel = message.member.voice.channel
     if (args[0]) {
