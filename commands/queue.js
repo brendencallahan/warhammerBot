@@ -8,10 +8,10 @@ module.exports = {
   run: async (client, message, args) => {
     const string = args.join(' ')
     if (string) {
-      return message.channel.send(`${client.emotes.error} | Heretic! You speak too much. Just say !queue, or !q. To add to the queue use !play "query"`)
+      return message.channel.send(`${client.emotes.error} | Heretic! You speak too much. Just say \`!queue\`.`)
     }
     const queue = client.distube.getQueue(message)
-    if (!queue) return message.channel.send(`${client.emotes.error} | Heretic! The queue is empty!`)
+    if (!queue) return message.channel.send(`${client.emotes.error} | Heretic! The queue is empty! See \`!help play\` or \`!help search\` to change that.`)
     var q = queue.songs
       .map((song, i) => `${i === 0 ? 'Playing:' : `${i}.`} ${song.name} - \`${song.formattedDuration}\``)
       .join('\n')

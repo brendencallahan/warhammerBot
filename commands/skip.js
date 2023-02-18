@@ -8,13 +8,13 @@ module.exports = {
     const string = args.join(" ");
     if (string) {
       return message.channel.send(
-        `${client.emotes.error} | Heretic! You speak too much. Just say !skip`
+        `${client.emotes.error} | Heretic! You speak too much. Just say \`!skip\`.`
       );
     }
     const queue = client.distube.getQueue(message);
     if (!queue)
       return message.channel.send(
-        `${client.emotes.error} | Heretic! The queue is empty!`
+        `${client.emotes.error} | Heretic! The queue is empty! See \`!help play\` or \`!help search\` to change that.`
       );
     try {
       const song = await queue.skip();

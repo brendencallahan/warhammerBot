@@ -6,6 +6,7 @@ module.exports = {
   description: "Repeats the current song or queue",
   verbose:
     "Typing `!repeat`, `!loop`, or `!rp` followed by `queue` or `song` will loop whichever is requested. " +
+    "To turn this off use `!repeat off`." +
     "To see the queue, you can use the `!queue` command.",
   inVoiceChannel: true,
   run: async (client, message, args) => {
@@ -13,13 +14,13 @@ module.exports = {
     const string = args.join(" ").toLowerCase();
     if (!queue)
       return message.channel.send(
-        `${client.emotes.error} | Heretic! There is nothing playing!`
+        `${client.emotes.error} | Heretic! There is nothing playing! See \`!help play\` or \`!help search\` to change that.`
       );
     let mode = null;
     let modes = ["off", "song", "queue"];
     if (!modes.includes(string)) {
       return message.channel.send(
-        `${client.emotes.error} | Heretic! You must specify what to repeat. Try !repeat off, !repeat song, or !repeat queue.`
+        `${client.emotes.error} | Heretic! You must specify what to repeat. Try \`!repeat off\`, \`!repeat song\`, or \`!repeat queue\`.`
       );
     }
     switch (string) {

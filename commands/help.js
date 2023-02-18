@@ -25,7 +25,7 @@ Description: ${commandList[string].long}`
       );
     } else if (string && string in commandList === false) {
       return message.channel.send(
-        `${client.emotes.error} | Heretic! You speak too much. Just say !help, !h, !cmd, or !command`
+        `${client.emotes.error} | Heretic! I know nothing of this ${string}. Use \`!help\` to see what I can do.`
       );
     } else {
       let returnString = "";

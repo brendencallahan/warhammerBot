@@ -13,7 +13,7 @@ module.exports = {
     const string = args.join(" ");
     if (!string) {
       return message.channel.send(
-        `${client.emotes.error} | Heretic! I need something to search for.`
+        `${client.emotes.error} | Heretic! I need something to search for. Say \`!search query\` or use \`!help seach\` to see more.`
       );
     }
     const results = await client.distube.search(string, {

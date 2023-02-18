@@ -3,10 +3,10 @@ let keywords = {};
 let settings = {
   warhammer40k: ["imperium", "chaos", "xenos"],
   fantasy: [
-    "Grand Alliance: Order",
-    "Grand Alliance: Chaos",
-    "Grand Alliance: Death",
-    "Grand Alliance: Destruction",
+    "grand alliance: order",
+    "grand alliance: chaos",
+    "grand alliance: death",
+    "grand alliance: destruction",
   ],
 };
 
@@ -14,24 +14,24 @@ let settings = {
 // {"chaos":[0,5],"imperium":[6,30],"xenos":[31,38]}
 // will allow for calling !random "word" and getting only "word" facts
 // where "word" is any column defined below
-keywords[facts[0].alliance] = [0, 0];
-keywords[facts[0].faction] = [0, 0];
-keywords[facts[0].subfaction] = [0, 0];
+keywords[facts[0].alliance.toLowerCase()] = [0, 0];
+keywords[facts[0].faction.toLowerCase()] = [0, 0];
+keywords[facts[0].subfaction.toLowerCase()] = [0, 0];
 for (let i = 1; i < facts.length; i++) {
   if (facts[i].alliance != facts[i - 1].alliance) {
-    keywords[facts[i].alliance] = [i, i];
+    keywords[facts[i].alliance.toLowerCase()] = [i, i];
   } else {
-    keywords[facts[i].alliance][1]++;
+    keywords[facts[i].alliance.toLowerCase()][1]++;
   }
   if (facts[i].faction != facts[i - 1].faction) {
-    keywords[facts[i].faction] = [i, i];
+    keywords[facts[i].faction.toLowerCase()] = [i, i];
   } else {
-    keywords[facts[i].faction][1]++;
+    keywords[facts[i].faction.toLowerCase()][1]++;
   }
   if (facts[i].subfaction != facts[i - 1].subfaction) {
-    keywords[facts[i].subfaction] = [i, i];
+    keywords[facts[i].subfaction.toLowerCase()] = [i, i];
   } else {
-    keywords[facts[i].subfaction][1]++;
+    keywords[facts[i].subfaction.toLowerCase()][1]++;
   }
 }
 
@@ -49,10 +49,10 @@ let keys = Object.keys(keywords)
 let keywordString = keys.shift()
 
 for (let i = 0; i < (keys.length - 1); i++) {
-    keywordString += `, ${keys[i]}`
+    keywordString += `, ${keys[i].toLowerCase()}`
 }
 
-keywordString += `, or ${keys.pop()}`
+keywordString += `, or ${keys.pop().toLowerCase()}`
 
 module.exports = {
   name: "random",
@@ -79,7 +79,7 @@ module.exports = {
         );
       } else {
         return message.channel.send(
-          `${client.emotes.error} | Heretic! I know nothing of this "${string}"... To see what I know type !random keywords`
+          `${client.emotes.error} | Heretic! I know nothing of this "${string}"... To see what I know type \`!random keywords\``
         );
       }
     }
@@ -99,9 +99,17 @@ module.exports = {
       });
     }
 
+    let formattedFact = ""
+    if (fact.faction.length > 0) {
+      formattedFact += ` Faction: ${fact.faction} |`
+    }
+    if (fact.subfaction.length > 0) {
+      formattedFact += ` Subfaction: ${fact.subfaction} |`
+    }
+    formattedFact += `\nRandom Fact: ${fact.fact}`
+
     return message.channel.send(
-      `${client.emotes.success} | Alliance: ${fact.alliance} - Faction: ${fact.faction} - Subfaction: ${fact.subfaction}
-Random Fact: ${fact.fact}`
+      `${client.emotes.success} | Alliance: ${fact.alliance} | ${formattedFact} `
     );
   },
 };

@@ -9,12 +9,12 @@ module.exports = {
     const queue = client.distube.getQueue(message);
     if (!queue)
       return message.channel.send(
-        `${client.emotes.error} | Heretic! The queue is empty!`
+        `${client.emotes.error} | Heretic! The queue is empty! See \`!help play\` or \`!help search\` to change that.`
       );
     const volume = parseInt(args[0]);
     if (isNaN(volume))
       return message.channel.send(
-        `${client.emotes.error} | Enter a valid number or be slain!`
+        `${client.emotes.error} | Enter a valid number or be slain! See \`!help volume\` for more info.`
       );
     queue.setVolume(volume);
     message.channel.send(
