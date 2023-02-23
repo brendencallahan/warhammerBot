@@ -1,4 +1,5 @@
 const { Constants } = require('discord.js')
+const random = require('./random.js')
 
 module.exports = {
   name: 'join',
@@ -24,5 +25,6 @@ module.exports = {
       )
     }
     client.distube.voices.join(voiceChannel)
+    random.run(client, message, args)
   }
 }

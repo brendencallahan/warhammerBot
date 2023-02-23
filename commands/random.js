@@ -46,13 +46,13 @@ try {
 }
 delete keywords[""];
 let keys = Object.keys(keywords)
-let keywordString = keys.shift()
+let keywordString = `\`${keys.shift()}\``
 
 for (let i = 0; i < (keys.length - 1); i++) {
-    keywordString += `, ${keys[i].toLowerCase()}`
+    keywordString += `, \`${keys[i].toLowerCase()}\``
 }
 
-keywordString += `, or ${keys.pop().toLowerCase()}`
+keywordString += `, or \`${keys.pop().toLowerCase()}\``
 
 module.exports = {
   name: "random",
@@ -101,15 +101,15 @@ module.exports = {
 
     let formattedFact = ""
     if (fact.faction.length > 0) {
-      formattedFact += ` Faction: ${fact.faction} |`
+      formattedFact += ` Faction: \`${fact.faction}\` |`
     }
     if (fact.subfaction.length > 0) {
-      formattedFact += ` Subfaction: ${fact.subfaction} |`
+      formattedFact += ` Subfaction: \`${fact.subfaction}\` |`
     }
     formattedFact += `\nRandom Fact: ${fact.fact}`
 
     return message.channel.send(
-      `${client.emotes.success} | Alliance: ${fact.alliance} | ${formattedFact} `
+      `${client.emotes.success} | Alliance: \`${fact.alliance}\` | ${formattedFact} `
     );
   },
 };
