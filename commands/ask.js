@@ -8,7 +8,7 @@ module.exports = {
   description: "Uses *definitely not AI* to answer your question",
   verbose:
     "Typing `!ask` followed by a `query`, will ask Ferrus the question. " +
-    "Ferrus will remember everything you say, until you use \`!ask cm\`." +
+    "Ferrus will remember everything you say, until you use `!ask cm`." +
     "This is *definitely not AI* but be sure to keep that between us.",
   run: async (client, message, args) => {
     const string = args.join(" ");

@@ -5,10 +5,11 @@ module.exports = {
   name: "search",
   inVoiceChannel: false,
   description: "Searches YouTube for playlists",
-  verbose: "Typing \`!search\` followed by your \`query\` will search YouTube for " +
+  verbose:
+    "Typing `!search` followed by your `query` will search YouTube for " +
     "playlists and return the first 5 results. " +
-    "This was made so that you can easily make a playlist (without leaving Discord). " + 
-    "You may also be looking for \`!play\` which will play the top song result.",
+    "This was made so that you can easily make a playlist (without leaving Discord). " +
+    "You may also be looking for `!play` which will play the top song result.",
   run: async (client, message, args) => {
     const string = args.join(" ");
     if (!string) {
@@ -35,8 +36,12 @@ module.exports = {
             url: results[i].uploader.url,
           })
           .setFields(
-            { name: "No. of Songs: ", value: `${results[i].length}`, inline: true},
-            { name: "URL:", value: `${results[i].url}`, inline: true},
+            {
+              name: "No. of Songs: ",
+              value: `${results[i].length}`,
+              inline: true,
+            },
+            { name: "URL:", value: `${results[i].url}`, inline: true }
           );
         embeds.push(embed);
       }

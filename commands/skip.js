@@ -2,8 +2,9 @@ module.exports = {
   name: "skip",
   inVoiceChannel: true,
   description: "Skip the current song",
-  verbose: "Typing \`!skip\` will end the current song. " +
-    "You may also be looking for \`!previous\`.",
+  verbose:
+    "Typing `!skip` will end the current song. " +
+    "You may also be looking for `!previous`.",
   run: async (client, message, args) => {
     const string = args.join(" ");
     if (string) {

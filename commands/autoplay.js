@@ -3,7 +3,7 @@ module.exports = {
   inVoiceChannel: true,
   description: "Automagically add songs to queue",
   verbose:
-    "Typing \`!autoplay\` will toggle automatically adding songs to the queue. " +
+    "Typing `!autoplay` will toggle automatically adding songs to the queue. " +
     "Using (definitely not A.I.) I will try to add songs to the queue that are " +
     "similar to the songs previous.",
   run: async (client, message, args) => {

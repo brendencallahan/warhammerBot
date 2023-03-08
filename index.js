@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { DisTube } = require("distube");
 const Discord = require("discord.js");
+const { getVoiceConnection } = require("@discordjs/voice");
 
 const client = new Discord.Client({
   intents: [
@@ -52,10 +53,10 @@ client.on("messageCreate", async (message) => {
   const cmd =
     client.commands.get(command) ||
     client.commands.get(client.aliases.get(command));
-  if (!cmd) return message.channel.send(
-    `${client.emotes.success} | Heretic! I know nothing of this \`${command}\`. Use \`!help\`, to see what I know.`
-  )
-  ;
+  if (!cmd)
+    return message.channel.send(
+      `${client.emotes.success} | Heretic! I know nothing of this \`${command}\`. Use \`!help\`, to see what I know.`
+    );
   if (cmd.inVoiceChannel && !message.member.voice.channel) {
     return message.channel.send(
       `${client.emotes.error} | Heretic! You must be in a voice channel!`

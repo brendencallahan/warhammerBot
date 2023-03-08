@@ -36,7 +36,7 @@ Description: ${commandList[string].long}`
       message.channel.send({
         embeds: [
           new Discord.EmbedBuilder()
-            .setTitle("Commands: for more info \`!help command\`")
+            .setTitle("Commands: for more info `!help command`")
             .setDescription(returnString)
             .setColor("BLURPLE"),
         ],

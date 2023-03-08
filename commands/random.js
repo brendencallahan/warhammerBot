@@ -45,22 +45,23 @@ try {
   console.log(e);
 }
 delete keywords[""];
-let keys = Object.keys(keywords)
-let keywordString = `\`${keys.shift()}\``
+let keys = Object.keys(keywords);
+let keywordString = `\`${keys.shift()}\``;
 
-for (let i = 0; i < (keys.length - 1); i++) {
-    keywordString += `, \`${keys[i].toLowerCase()}\``
+for (let i = 0; i < keys.length - 1; i++) {
+  keywordString += `, \`${keys[i].toLowerCase()}\``;
 }
 
-keywordString += `, or \`${keys.pop().toLowerCase()}\``
+keywordString += `, or \`${keys.pop().toLowerCase()}\``;
 
 module.exports = {
   name: "random",
   aliases: ["fact", "funfact"],
   description: "Returns a random fact.",
-  verbose: "Typing \`!random\`, \`!fact\`, or \`!funfact\` will return any random fact from the list. " +
-    "If you wish to specify an alliance, faction, or subfaction, you can provide it immediately after e.g." + 
-    "\`!random imperium\`. To get a list of alliances, etc. type \`!random keywords\`.",
+  verbose:
+    "Typing `!random`, `!fact`, or `!funfact` will return any random fact from the list. " +
+    "If you wish to specify an alliance, faction, or subfaction, you can provide it immediately after e.g." +
+    "`!random imperium`. To get a list of alliances, etc. type `!random keywords`.",
   run: async (client, message, args) => {
     // Print random fact if no faction name is provided
     const string = args.join(" ").toLowerCase();
@@ -84,9 +85,11 @@ module.exports = {
       }
     }
 
-    fact.alliance = fact.alliance.charAt(0).toUpperCase() + fact.alliance.slice(1);
+    fact.alliance =
+      fact.alliance.charAt(0).toUpperCase() + fact.alliance.slice(1);
     fact.faction = fact.faction.charAt(0).toUpperCase() + fact.faction.slice(1);
-    fact.subfaction = fact.subfaction.charAt(0).toUpperCase() + fact.subfaction.slice(1);
+    fact.subfaction =
+      fact.subfaction.charAt(0).toUpperCase() + fact.subfaction.slice(1);
 
     if (fact.fact.includes("Ferrus")) {
       await message.channel.send({
@@ -99,14 +102,14 @@ module.exports = {
       });
     }
 
-    let formattedFact = ""
+    let formattedFact = "";
     if (fact.faction.length > 0) {
-      formattedFact += ` Faction: \`${fact.faction}\` |`
+      formattedFact += ` Faction: \`${fact.faction}\` |`;
     }
     if (fact.subfaction.length > 0) {
-      formattedFact += ` Subfaction: \`${fact.subfaction}\` |`
+      formattedFact += ` Subfaction: \`${fact.subfaction}\` |`;
     }
-    formattedFact += `\nRandom Fact: ${fact.fact}`
+    formattedFact += `\nRandom Fact: ${fact.fact}`;
 
     return message.channel.send(
       `${client.emotes.success} | Alliance: \`${fact.alliance}\` | ${formattedFact} `

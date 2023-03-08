@@ -2,9 +2,10 @@ module.exports = {
   name: "resume",
   aliases: ["unpause"],
   description: "Resumes the current song",
-  verbose: "Typing \`!resume\` or \`!unpause\` will resume the currently playing song. " +
-    "It will also pause playback, if the song is already playing. " + 
-    "You may also be looking for \`!pause\`.",
+  verbose:
+    "Typing `!resume` or `!unpause` will resume the currently playing song. " +
+    "It will also pause playback, if the song is already playing. " +
+    "You may also be looking for `!pause`.",
   inVoiceChannel: true,
   run: async (client, message, args) => {
     const string = args.join(" ");
