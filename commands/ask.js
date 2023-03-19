@@ -14,7 +14,7 @@ module.exports = {
     const string = args.join(" ");
     if (!string) {
       return message.channel.send(
-        `${client.emotes.error} | Heretic! Enter a url or query to start playing. See \`!help play\` for more info.`
+        `${client.emotes.error} | Heretic! Enter a \`query\` to ask Ferrus. See \`!help ask\` for more info.`
       );
     }
 
