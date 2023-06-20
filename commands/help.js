@@ -38,7 +38,6 @@ Description: ${commandList[string].long}`
           new Discord.EmbedBuilder()
             .setTitle("Commands: for more info `!help command`")
             .setDescription(returnString)
-            .setColor("BLURPLE"),
         ],
       });
     }
