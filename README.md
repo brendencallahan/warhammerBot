@@ -15,6 +15,12 @@ After you've filled out the variables in `config.json`, build the docker image u
 
 You can then run it using `docker run warhammer-bot`.
 
+To add it to a server do the following: (https://discordpy.readthedocs.io/en/stable/discord.html)
+
+![image](https://github.com/brendencallahan/warhammerBot/assets/47364240/5d24a9a8-a7dc-411a-a853-82486f9031e6)
+
+
+
 The Dockerfile is there, so that it can be easily run as a container; however, if you would like to run it manually you can do so using the following commands:
 
 `$ git clone https://github.com/brendencallahan/warhammerBot`  
