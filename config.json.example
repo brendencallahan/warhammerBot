@@ -1,6 +1,7 @@
 {
   "prefix": "!",
-  "token": "YOUR_TOKEN_HERE",
+  "token": "YOUR_DISCORD_TOKEN_HERE",
+  "OPEN_API": "YOUR_OPEN_API_TOKEN_HERE",
   "emoji": {
     "play": "▶️",
     "stop": "⏹️",
